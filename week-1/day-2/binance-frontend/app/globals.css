@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --background-color: #0e0f14;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,6 +20,36 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: #0e0f14;
+
+  /* Scrollbar
+  scrollbar-width: thin; For Firefox */
+  
+}
+
+.thin-scroll::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.thin-scroll::-webkit-scrollbar-thumb {
+    border-radius: .25rem;
+    --tw-bg-opacity: 1;
+    background-color: rgb(32 33 39/var(--tw-bg-opacity));
+    border: 1px solid transparent;
+    background-clip: padding-box
+}
+
+.thin-scroll::-webkit-scrollbar-thumb:hover {
+    border: 0
+}
+
+.thin-scroll::-webkit-scrollbar-track {
+    background: transparent
+}
+
+.thin-scroll::-webkit-scrollbar-thumb:window-inactive {
+    --tw-bg-opacity: 1;
+    background-color: rgb(32 33 39/var(--tw-bg-opacity))
 }
 
 @layer utilities {

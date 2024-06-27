@@ -5,10 +5,11 @@ import { TradeView } from "@/app/components/TradeView";
 import { Depth } from "@/app/components/depth/Depth";
 import { useParams } from "next/navigation";
 
+
 export default function Page() {
     const { market } = useParams();
 
-    return <div className="flex flex-row flex-1">
+    return <div className="flex flex-row flex-1 pt-16">
         <div className="flex flex-col flex-1">
             <MarketBar market={market as string} />
             <div className="flex flex-row h-[620px] border-y border-slate-800">

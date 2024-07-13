@@ -4,9 +4,11 @@ import { getKlines } from "../utils/httpClient";
 import { KLine } from "../utils/types";
 
 export function TradeView({
-  market,
-}: {
-  market: string;
+    className,
+    market,
+}: {    
+    market: string;
+    className: string
 }) {
   const chartRef = useRef<HTMLDivElement>(null);
   const chartManagerRef = useRef<ChartManager>(null);
@@ -46,8 +48,6 @@ export function TradeView({
   }, [market, chartRef]);
 
   return (
-    <>
-      <div ref={chartRef} style={{ height: "520px", width: "100%", marginTop: 4 }}></div>
-    </>
+      <div ref={chartRef} className={className} style={{ height: "520px", marginTop: 4 }}></div>
   );
 }

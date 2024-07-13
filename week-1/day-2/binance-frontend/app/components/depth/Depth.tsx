@@ -5,7 +5,7 @@ import { getDepth, getKlines, getTicker, getTrades } from "../../utils/httpClien
 import { BidTable } from "./BidTable";
 import { AskTable } from "./AskTable";
 
-export function Depth({ market }: {market: string}) {
+export function Depth({ market, className }: {market: string, className: string}) {
     const [bids, setBids] = useState<[string, string][]>();
     const [asks, setAsks] = useState<[string, string][]>();
     const [price, setPrice] = useState<string>();
@@ -21,7 +21,7 @@ export function Depth({ market }: {market: string}) {
         // getKlines(market, "1h", 1640099200, 1640100800).then(t => setPrice(t[0].close));
     }, [])
     
-    return <div>
+    return <div className={`${className} p-3`}>
         <TableHeader />
         {asks && <AskTable asks={asks} />}
         {price && <div>{price}</div>}

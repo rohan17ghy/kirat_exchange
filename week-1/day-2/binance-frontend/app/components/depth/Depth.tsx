@@ -9,6 +9,7 @@ export function Depth({ market, className }: {market: string, className: string}
     const [bids, setBids] = useState<[string, string][]>();
     const [asks, setAsks] = useState<[string, string][]>();
     const [price, setPrice] = useState<string>();
+    const [hoveredIndex, setHoveredIndex] = useState(-1);
 
     useEffect(() => {
         getDepth(market).then(d => {
@@ -21,18 +22,24 @@ export function Depth({ market, className }: {market: string, className: string}
         // getKlines(market, "1h", 1640099200, 1640100800).then(t => setPrice(t[0].close));
     }, [])
     
-    return <div className={`${className} p-3`}>
-        <TableHeader />
-        {asks && <AskTable asks={asks} />}
-        {price && <div>{price}</div>}
-        {bids && <BidTable bids={bids} />}
+    return <div className={`${className} overflow-x-auto hide-scrollbar`}>
+        <table className="min-w-full bg-[var(--background-color)] text-white">
+            <TableHeader />
+            <tbody>
+                {asks && <AskTable asks={asks} hoveredIndex={hoveredIndex} setHoveredIndex={setHoveredIndex} />}
+                {price && <div>{price}</div>}
+                {bids && <BidTable bids={bids} />}
+            </tbody>
+        </table>
     </div>
 }
 
 function TableHeader() {
-    return <div className="flex justify-between text-xs">
-    <div className="text-white">Price</div>
-    <div className="text-slate-500">Size</div>
-    <div className="text-slate-500">Total</div>
-</div>
+    return <thead className="text-xs">
+    <tr className="flex justify-between">
+      <th className="py-2 px-2 text-left text-[#ffffff]">Price (USDC)</th>
+      <th className="py-2 px-2 text-left text-[#a1a1a1]">Size (SOL)</th>
+      <th className="py-2 px-2 text-left text-[#a1a1a1]">Total (SOL)</th>
+    </tr>
+  </thead>
 }
